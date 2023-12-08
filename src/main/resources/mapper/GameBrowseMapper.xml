@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.server.mapper.GameBrowseMapper">
+
+    <select id="statisticsSpeed" resultType="com.example.demo.server.entity.dto.GameDto">
+        SELECT
+            COUNT( game_id ) browseCount,
+            CONVERT ( browse_date_time, DATE ) AS browseDateTime
+        FROM
+            game_browse
+        GROUP BY
+            CONVERT ( browse_date_time, DATE ),
+            game_id
+        ORDER BY
+            CONVERT ( browse_date_time, DATE ) DESC
+    </select>
+</mapper>

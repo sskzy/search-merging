@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.server.mapper.GameInfoMapper">
+
+    <resultMap id="BaseResultMap" type="com.example.demo.server.entity.GameInfo">
+            <id property="id" column="id" jdbcType="BIGINT"/>
+            <result property="gameName" column="game_name" jdbcType="VARCHAR"/>
+            <result property="createDateTime" column="create_date_time" jdbcType="TIMESTAMP"/>
+            <result property="updateDateTime" column="update_date_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,game_name,create_date_time,
+        update_date_time
+    </sql>
+</mapper>
