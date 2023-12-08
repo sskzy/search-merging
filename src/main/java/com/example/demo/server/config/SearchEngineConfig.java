@@ -5,6 +5,7 @@ import com.example.demo.search.SearchEngine;
 import com.example.demo.search.channel.SearchEngineChannel;
 import com.example.demo.search.channel.SearchEngineExecuteChannel;
 import com.example.demo.search.emun.DatabaseType;
+import com.example.demo.search.handle.SearchEngineClearHandle;
 import com.example.demo.search.handle.SearchEngineFilterHandle;
 import com.example.demo.search.handle.SearchEngineProcessHandle;
 import com.example.demo.search.handle.svper.SearchEngineHandle;
@@ -36,7 +37,7 @@ public class SearchEngineConfig {
     /**
      * 组装搜索引擎
      */
-    @Bean
+    @Bean("gameSearch")
     public SearchEngineChannel<GameDto> SearchEngineChannel() {
         return new SearchEngineChannel<GameDto>()
                 .add(getGame1SearchEngine())
@@ -55,6 +56,12 @@ public class SearchEngineConfig {
                             public Boolean filter(String name) {
                                 // 过滤
                                 return !StringUtils.hasLength(name);
+                            }
+                        })
+                        .add(new SearchEngineClearHandle<GameDto>() {
+                            @Override
+                            public String clear(String name) {
+                                return name.trim();
                             }
                         })
                         .add(new SearchEngineProcessHandle<GameDto>() {
